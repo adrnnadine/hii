@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Daftar Siswa</title>
+  <style>
+    :root{
+      --left-pad: 40px;
+      --heading-size: 40px;
+      --name-gap: 18px;
+      --btn-font-size: 13px;
+    }
+
+    body{
+      margin:0;
+      font-family: "Georgia", "Times New Roman", serif;
+      background: #fff;
+      color: #222;
+    }
+
+    .wrapper{
+      padding: 30px var(--left-pad);
+      max-width: 900px;
+    }
+
+    /* style teks besar seperti pada proyektor */
+    .student {
+      font-size: var(--heading-size);
+      font-weight: 700;
+      margin: 0 0 var(--name-gap) 0;
+      letter-spacing: 0.5px;
+    }
+
+    .controls {
+      margin: 6px 0 20px 0;
+    }
+
+    button.change {
+      display: inline-block;
+      padding: 6px 8px;
+      font-size: var(--btn-font-size);
+      border: 1px solid #999;
+      background: #f3f3f3;
+      cursor: pointer;
+      border-radius: 3px;
+      margin-bottom: 4px;
+    }
+
+    button.change:active { transform: translateY(1px); }
+
+    /* responsive scale untuk layar projeksi kecil */
+    @media (max-width:480px){
+      :root{ --heading-size: 28px; --left-pad: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Tiga teks: masing-masing awalnya "First Student" -->
+    <h1 id="student1" class="student">First Student</h1>
+    <div class="controls">
+      <button class="change"
+              data-target="#student1"
+              data-name="Ashley 12.1">
+        Click me to display Our Name.
+      </button>
+    </div>
+
+    <h1 id="student2" class="student">Second Student</h1>
+    <div class="controls">
+      <button class="change"
+              data-target="#student2"
+              data-name="Ivenna 12.1">
+        Click me to display Our Name.
+      </button>
+    </div>
+
+    <h1 id="student3" class="student">Third Student</h1>
+    <div class="controls">
+      <button class="change"
+              data-target="#student3"
+              data-name="Nadine 12.3">
+        Click me to display Our Name.
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Pasang event listener pada semua tombol .change
+    document.querySelectorAll('button.change').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetSelector = btn.dataset.target;
+        const newName = btn.dataset.name || 'Ashley 12.1';
+        const targetEl = document.querySelector(targetSelector);
+        if (targetEl) {
+          targetEl.textContent = newName;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
